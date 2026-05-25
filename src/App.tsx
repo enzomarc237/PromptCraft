@@ -249,7 +249,7 @@ function App() {
     return () => window.removeEventListener('keydown', listener)
   })
 
-  const filteredCommands = useMemo(() => {
+  const filteredCommands = (() => {
     const fixedActions = [
       { label: 'Create prompt', action: () => createPrompt() },
       {
@@ -279,7 +279,7 @@ function App() {
     return [...fixedActions, ...promptActions].filter((entry) =>
       entry.label.toLowerCase().includes(commandQuery.toLowerCase().trim()),
     )
-  }, [commandQuery, db.promptVersions, db.prompts])
+  })()
 
   const updateActivePrompt = (mutator: (prompt: PromptRecord) => void) => {
     if (!activePrompt) return

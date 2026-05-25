@@ -40,13 +40,13 @@ describe('shortcut helpers', () => {
   })
 
   it('matches keyboard event against configured shortcut', () => {
-    const keyboardEvent = new KeyboardEvent('keydown', {
+    const keyboardEvent = {
       key: 'Enter',
       ctrlKey: true,
       shiftKey: false,
       altKey: false,
       metaKey: false,
-    })
+    } as KeyboardEvent
 
     expect(eventMatchesShortcut(keyboardEvent, 'ctrl+enter')).toBe(true)
     expect(eventMatchesShortcut(keyboardEvent, 'meta+enter')).toBe(false)
